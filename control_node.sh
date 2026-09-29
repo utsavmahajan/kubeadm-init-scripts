@@ -1,4 +1,5 @@
 clear
+cd ..
 
 # Init Kubeadm
 sudo kubeadm init \
@@ -19,8 +20,8 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.2
 
 # 2)Download the custom resources necessary to configure Calico.
 curl -O https://raw.githubusercontent.com/projectcalico/calico/v3.32.2/manifests/custom-resources-bpf.yaml
-sudo sed -i 's|cidr: 192.168.0.0/16|cidr: 10.244.0.0/16|' /home/ubuntu/custom-resources-bpf.yaml
-grep -n "cidr:" /home/ubuntu/custom-resources-bpf.yaml
+sudo sed -i 's|cidr: 192.168.0.0/16|cidr: 10.244.0.0/16|' "$(pwd)/custom-resources-bpf.yaml"
+grep -n "cidr:" "$PWD/custom-resources-bpf.yaml"
 
 # 3) Create the manifest to install Calico.
 kubectl create -f custom-resources-bpf.yaml
