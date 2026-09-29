@@ -1,6 +1,6 @@
 # Installing Containerd
 sudo apt-get update
-sudo apt install containerd
+sudo apt install -y containerd
 
 # Verification for Containerd + Runc
 runc --version
